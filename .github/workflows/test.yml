@@ -6,4 +6,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         -   name: Welcome to my workflow
-            run: echo welcome
+            uses: actions/checkout@v4
+
+        -   name: List and Read Files
+            run: |
+               ls
+               cat Readme.md
+
