@@ -5,14 +5,29 @@ jobs:
     first_job:
         runs-on: ubuntu-latest
         steps:
-        -   name: Install Cowsay
+        -   name: checkout repo
+            uses: actions/checkout@v4
+
+        -   name: Run shell script
             run: |
-                sudo apt install cowsay -y
+             chmod +x dragon.shell
+             ./dragon.sh
 
-        -   name: Cowsay initiation
-            run: cowsay -f dragon "Ooooooooooo" >> dragon.txt
+        -   name: Upload dragon file
+            uses: actions/upload-artifact@v4
+            with:
+                name: Uploading-Dragon
+                path: dragon.txt
 
+    second_job:
+        needs: first_job
+        runs-on: ubuntu-latest
+        steps:
 
+        -   name: Download File
+            uses: actions/download-artifact@v4
+            with:
+                name: Uploading-Dragon
 
-        -   name: Cat dragon file
+        -   name: Cat Dragon
             run: cat dragon.txt
