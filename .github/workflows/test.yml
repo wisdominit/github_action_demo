@@ -10,7 +10,7 @@ jobs:
 
         -   name: Run shell script
             run: |
-             chmod +x dragon.shell
+             chmod +x dragon.sh
              ./dragon.sh
 
         -   name: Upload dragon file
